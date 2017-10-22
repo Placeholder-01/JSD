@@ -25,7 +25,7 @@ def make_dictionary(c, cov):
           ele = l.strip().split()
           if int(ele[4]) > cov:
             pos.append(int(ele[1]))
-            mr[i][int(ele[1])] = (float(ele[3]))
+            mr[i][int(ele[1])] = float(ele[3])
     if i == 0:
       allpos.update(pos)
     else:
