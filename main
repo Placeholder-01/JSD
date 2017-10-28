@@ -1,21 +1,26 @@
+#!/usr/bin/env python
+
+import sys
 import argparse
+import distutils.util
+
+argument = None
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-input.fofn', action='append', dest='simple_value', help='Stores the input filenames')
+parser.add_argument('--input.fofn', '-i', action='store', dest='import_fofn', help='Stores the input filenames')
 
-parser.add_argument('-chr', action='store_const', dest='constant_value', const='value-to-store',
-                    help='Stores the list of chromosomes.')
+parser.add_argument('--chr', action='store', dest='chr', help='Stores the list of chromosomes.')
 
-parser.add_argument('-window_size', action='store_const', default=100, dest='boolean_switch', help='Set a switch to true')
+parser.add_argument('--window_size', action='store', type=int, default=100, dest='window_size', help='Sets the size of the window')
 
-parser.add_argument('-window_step', action='store_const', default=10, dest='boolean_switch', help='Set a switch to false')
+parser.add_argument('--window_step', action='store', type=int, default=10, dest='window_step', help='Sets the gap between the beginning of consecutive windows')
 
-parser.add_argument('-minimum_cov', action='append', dest='collection', default=10, help='Add repeated values to a list', )
+parser.add_argument('--minimum_cov', action='store', dest='minimum_cov', default=10, help='Sets the minimum coverage required at every spot')
 
-parser.add_argument('-hyper_in_tumor', action='store_true', dest='const_collection', const='value-1-to-append', default=True, help='Add different values to list')
+parser.add_argument('--hyper_in_tumor', action='store', type=lambda x:bool(distutils.util.strtobool(x)), dest='hyper_in_tumor', default=True, help='Sets whether or not the methylation ratios should be checked for increase between first and last')
 
-results = parser.parse_args()
+argument = parser.parse_args()
 print 'simple_value     =', results.simple_value
 print 'constant_value   =', results.constant_value
 print 'boolean_switch   =', results.boolean_switch
