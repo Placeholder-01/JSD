@@ -8,9 +8,9 @@ argument = None
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--input.fofn', '-i', action='store', dest='import_fofn', help='Stores the input filenames')
+parser.add_argument('--input_fofn', '-i', action='store', dest='import_fofn', help='Stores the input filenames')
 
-parser.add_argument('--chr', action='store', dest='chr', help='Stores the list of chromosomes.')
+parser.add_argument('--chrms', action='store', dest='chrms', help='Stores the list of chromosomes.')
 
 parser.add_argument('--window_size', action='store', type=int, default=100, dest='window_size', help='Sets the size of the window')
 
@@ -21,8 +21,9 @@ parser.add_argument('--minimum_cov', action='store', dest='minimum_cov', default
 parser.add_argument('--hyper_in_tumor', action='store', type=lambda x:bool(distutils.util.strtobool(x)), dest='hyper_in_tumor', default=True, help='Sets whether or not the methylation ratios should be checked for increase between first and last')
 
 argument = parser.parse_args()
-print 'simple_value     =', results.simple_value
-print 'constant_value   =', results.constant_value
-print 'boolean_switch   =', results.boolean_switch
-print 'collection       =', results.collection
-print 'const_collection =', results.const_collection
+print 'input_fofn = ', argument.input_fofn
+print 'chromosome = ', argument.chrms
+print 'window_size = ', argument.window_size
+print 'window_step = ', argument.window_step
+print 'minimum_cov = ', argument.minimum_cov
+print 'hyper in tumor: ', argument.hyper_in_tumor
